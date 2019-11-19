@@ -1,0 +1,1 @@
+Изменмть if $_SERVER['PHP_SELF']; в floor/f1.php
