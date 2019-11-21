@@ -91,14 +91,16 @@ session_start();
     $result = mysqli_query($connection, $query);
     while ($set = mysqli_fetch_assoc($result)){?>
     <div class="container">
-      <div class="box">
-      <img class="box-img" src="<?=$set['https'];?>" alt="Image NOT loaded!">
-      <a href="post.php" class="box-text">
+      <div class="box" style="position: relative">
+      <a href="post.php?id=<?=$set['id'];?>" class="box-text">
         <h2><?=$set['topic'];?></h2>
         
           <?=$set['comment'];?>
         
       </a>
+      <div style="position: absolute; top: 0; right: 0; padding: 5px 10px">
+        <a style="font-size: 10px;" align="right" href="/admin/update.php?id=<?=$set['id'];?>" class="box-text">Update</a>
+      </div>
     </div>
     <?php
     }

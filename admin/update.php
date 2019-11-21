@@ -1,18 +1,21 @@
 <?php
 session_start();
+
+require("../functions.php"); 
 require ("../db_connect.php");
+
 if (!isset($_SESSION['login']))
       {
 		http_response_code(404);
 		die();
 	  }
-$query = "SELECT * FROM `admins`";
-		
-		$result = mysqli_query($connection, $query);
-		
-		$set = mysqli_fetch_assoc($result);
+      
+	  $id = $_GET['id'];
+	  $bid = $_GET['id'];
+      $query = "SELECT * FROM `news` where id ={$id}";
+      $result = mysqli_query($connection, $query);
+      $set = mysqli_fetch_assoc($result);
 ?>
-<?php require("../functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -127,24 +130,26 @@ $query = "SELECT * FROM `admins`";
           $topic = $_POST['topic'];
           $comment = $_POST['comment'];
           $inf = $_POST['editordata'];
-          $query = "INSERT INTO `news`(`topic`,`comment`,`inf`) VALUES ('{$topic}','{$comment}','{$inf}')";
-          $result= mysqli_query($connection,$query);
+        //   $query = "INSERT INTO `news`(`topic`,`comment`,`https`,`inf`) VALUES ('{$topic}','{$comment}','{$https}','{$inf}')";
+          $query = "UPDATE `news` SET topic='{$topic}', inf='{$inf}' where id = {$id}";
+		  $result= mysqli_query($connection,$query);
+		  $set2 = mysqli_fetch_assoc($result);
 	   }
   	?>
 
 		<form class="form-post" action="admin.php" method="post">
 			<h3>Topic</h3>
-			<input type="text" name="topic" required>
+			<input type="text" name="topic" value="<?=$set['topic'];?>" required>
 			<h3>Comment</h3>
-			<textarea class="ta" name="comment"></textarea>
+			<textarea class="ta" name="comment"><?=$set['comment'];?></textarea>
 			<h3>Edit news!</h3>
 			<!-- <div class="ta b"> -->
-  				<textarea id="summernote" name="editordata"></textarea>
+  				<textarea id="summernote" name="editordata"><?=$set['inf'];?></textarea>
 			<!-- </div> -->
 			<input class="btn" type="submit" name="submit" value="Load!">
 		</form>
 		<script>
-			    $(document).ready(function() {
+						    $(document).ready(function() {
         $('#summernote').summernote({
             height: 200,
             onImageUpload: function(files, editor, welEditable) {

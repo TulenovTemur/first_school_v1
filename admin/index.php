@@ -18,7 +18,7 @@ if (isset($_SESSION['login']))
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Administrator</title>
+	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="css/admin.css">
 	<link rel="stylesheet" href="../styles/common.css">
 </head>
@@ -39,8 +39,8 @@ if (isset($_POST['submit']))
 }
 ?>
   <form method="post" action="index.php" class="admin_block">
-  	<h2 class="admin_block_tit">Administrator</h2>
-    <p class="admin_block_poragraph" require>Что бы войти от именни администратора введите пароль</p>
+  	<h2 class="admin_block_tit">Login</h2>
+    <p class="admin_block_poragraph" require>Что бы войти введите пароль</p>
   	<div class="input_box">
 	  <input type="password" name="pass">
 	</div><br>

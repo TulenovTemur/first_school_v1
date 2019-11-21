@@ -39,6 +39,10 @@ if($_SERVER['PHP_SELF'] == "/admin/admin.php"){
         { ?>
         <li><a href='/admin/index.php' <?=$lfactive?> >Admin</a></li>
         <?php }
+        if (!isset($_SESSION['login']))
+        { ?>
+        <li><a href='/admin/index.php' <?=$lfactive?> >Login</a></li>
+        <?php }
         ?>
     </ul>
 </nav>
